@@ -1,16 +1,126 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Now: storm reporting.
+    </title>
+    <meta name="discription" content="Weather Storm Reporting">
+    <link href="https://fonts.googleapis.com/css?family=Charmonman%7CSource+Sans+Pro%7CSource+Serif+Pro" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/small-10.css">
+    <link rel="stylesheet" type="text/css" href="styles/medium-10.css">
+    <link rel="stylesheet" type="text/css" href="styles/large-10.css"> <!--
+    <link rel="stylesheet" type="text/css" href="styles/main7.css">-->
+  </head>
+  <body>
+    <main>
+      <header>
+        <figure id="logo">
+          <img src="images/sunny-assets/sunny1.png" alt="Logo_for_weather_now" srcset="images/sunny-assets/sunny1.png 1x, images/sunny-assets/sunny2.png 2x, images/sunny-assets/sunny3.png 3x"/>
+        </figure>
+  
+        <section class="headings">
+            <h1>Weather Now</h1>
+            <h3>Weather for your life</h3>
+        </section>
+        <figure id="CurrWeather" class="curricon">
+          <figcaption id="CurrCondition"></figcaption>
+        </figure>
+        <div id="clear">
+        </div>
+        <nav>
+          <button onclick="toggleHam()">&equiv;</button> <!-- <p>&ne;</p> -->
+          <ul id="primaryNav" class="responsive">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="preston-10.html">Preston</a></li>
+              <li>Fish Heaven</li>
+              <li>Soda Springs</li>
+              <li><a href="gallery-10.html">Gallery</a></li>
+              <li style="background-color: #182875;"><a href="stormcenter.html">Weather Alerts</a></li>
+            </ul>
+      </nav>
+    </header>
+
+        <h3>Winter is comming, and so are storms, let us know what is happening in your area!</h3>
+        <form method="get" action="Servlet">
+            <!-- github reqirues get only (not post (a more secure option))-->
+            <fieldset>
+                <legend>Tell us about you</legend>
+                <label class="top">Full Name*<input type="text" name="fullname" required pattern="[a-zA-Z ]{5,}"></label>
+                <label class="top">Email<input type="email" name="emali" placeholder="someone@mail.com"></label>
+                <label class="top">Phone*<input type="tel" name="phone" placeholder="1235551234" required></label>
+                <label class="top">Zipcode*<input type="number" name="zipcode" placeholder="83263" required></label>
+            </fieldset>
+            <fieldset>
+                <legend>Tell us about the storm</legend>
+                <label class="top">Date of the storm<input type="date" name="completeDate"></label>
+
+                <label class="top" for="Storm-type">Type of storm:</label>
+                <input list="Type-of-storm" id="Storm-type" name="Storm-type"/>
+
+                    <datalist id="Type-of-storm">
+                        <option value="Flash Flood">
+                        <option value="Hail">
+                        <option value="Hurricane">
+                        <option value="Thunderstorm">
+                        <option value="Huricane">
+                    </datalist>
+
+                    <label class="top" for="rating">How severe is the storm (10 is most severe)</label>
+                    <input type="range" id="rating" value="5" min="1" max="10" step="1" oninput="adjustRating(this.value)" onchange="adjustRating(this.value)">
+                <span id="ratingvalue">5</span><br>
+
+                <label class="top">Where is this storm found?</label>
+                <select name="storm region" > 
+                    <option value="" disabled selected id="placeholder" >Select Region</option>
+                    <option value="preston">Preston</option>
+                    <option value="fishHaven">Fish Haven</option>
+                    <option value="sodaSprings">Soda Springs</option>
+                </select>
+                <div> are you in danger?</div>
+                <label class="sbs"><input type="radio" name="danger" value="yes">Yes</label>
+                <label class="sbs"><input type="radio" name="danger" value="no">No</label>
+                <label class="sbs"><input type="radio" name="danger" value="maybe">Maybe</label>
+
+            </fieldset>
+            <fieldset>
+                <legend>Let us know what else we may need to know!</legend>
+                <label class="top">Anticipated Completion Date</label>
+                    <textarea rows="7" cols="50">
+                    </textarea>
+            </fieldset>
+
+            <input type="submit" value="Report this weather news!" class="submitBtn">
+        </form> 
+
+        <footer>
+            <script>
+              currentdate();  
+            </script>
+              <div id="ci">contact info 
+                <p>conntact me by meeting me at the park at 12:32 AM use a code word</p>
+                <p>or: email: ire10001@byui.edu</p>
+              </div>
+              <div id="map">
+                <img src="images/map.png" alt="map of Preston Idaho from google maps"> 
+              </div> 
+            <p id="currentDate"></p>
+            <p>
+              &copy; 2018 &star; Isaac Robert Ireland &star; USA &star; terms of use
+            </p>
+            <script>
+            window.onload = function(){
+              currentdate();
+          } </script>
+        </footer>
+    </main>
+    <script>
+      function adjustRating(rating) {
+      document.getElementById("ratingvalue").innerHTML = rating;}
+  </script>
+    <script src="scripts/toggleHam.js"></script>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/currentdate.js"></script>
+    <script src="scripts/windchill.js"></script>
+  </body>
